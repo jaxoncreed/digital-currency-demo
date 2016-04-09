@@ -1,4 +1,4 @@
-import {fromJS, List} from 'immutable';
+import {fromJS, List, Map} from 'immutable';
 import {find} from 'lodash';
 
 export const INITIAL_STATE = new Map();
