@@ -2,27 +2,21 @@ import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import {connect} from 'react-redux';
 import {List} from 'immutable';
+import Member from './Member';
 
 const MemberList = React.createClass({
   mixins: [PureRenderMixin],
 
-  test: function() {
-    console.log(JSON.stringify(this.props.members));
-    return this.props.members;
-  },
-
   render: function() {
     return (
       <div className="memberList">
-        <ul>
-          {this.props.members.map(member => {
-            console.log(member.get('name'));
+        <ul className="memberUl">
+          {this.props.members.map((member, index) => {
             return (
-              <li>{member.get('name')} - {member.get('amount')}</li>
+              <Member name={member.get('name')} amount={member.get('amount')} key={index} />
             )
           })}
         </ul>
-        <p>{ this.props.members }</p>
       </div>
     );
   }
