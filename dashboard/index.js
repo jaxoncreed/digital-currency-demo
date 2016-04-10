@@ -8,7 +8,7 @@ import io from 'socket.io-client';
 
 const store = createStore(reducer);
 
-const socket = io(`${location.protocol}//${location.hostname}:8006`);
+const socket = io(`${location.protocol}//elenisocket.o.team`);
 
 socket.on('state', state => {
 	console.log("Getting state", state);

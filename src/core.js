@@ -1,7 +1,10 @@
 import {fromJS, List, Map} from 'immutable';
 import {find} from 'lodash';
 
-export const INITIAL_STATE = new Map();
+export const INITIAL_STATE = new Map({
+	members: new List(),
+	admin: 0
+});
 
 export function addMembers(state, members) {
   return state.update('members', new List(), stateMembers => stateMembers.concat(fromJS(members)));
@@ -13,11 +16,13 @@ export function addMoney(state, amount) {
 
 export function evenlyDivideMoney(state) {
 	var stateJS = state.toJS();
+	console.log(stateJS);
 	var divider = Math.floor(stateJS.admin / stateJS.members.length);
 	stateJS.members.forEach(member => {
 		member.amount += divider;
 		stateJS.admin -= divider;
 	});
+	console.log(stateJS)
 	return fromJS(stateJS);
 }
 

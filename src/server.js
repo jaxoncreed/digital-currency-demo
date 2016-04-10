@@ -5,8 +5,8 @@ import textingServer from './textingServer';
 import bodyParser from 'body-parser';
 
 export default function startServer(store) {
-	const socketPort = 8006;
-  const expressPort = 8007;
+	const socketPort = 8007;
+  const expressPort = 8006;
 
 // Socket setup: ---------------------------------------------------------------
   const io = new Server().attach(socketPort);
@@ -26,7 +26,7 @@ export default function startServer(store) {
   const server = express();
 
   server.use(bodyParser.urlencoded({ extended: false }));
-  textingServer(server);
+  textingServer(server, store);
 
   server.get('/', (req, res) => {
     res.redirect('/index.html')
