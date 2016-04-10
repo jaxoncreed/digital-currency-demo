@@ -1,7 +1,7 @@
 import Server from 'socket.io';
 import express from 'express';
 import path from 'path';
-import textingServer from 'textingServer';
+import textingServer from './textingServer';
 import bodyParser from 'body-parser';
 
 export default function startServer(store) {
