@@ -1,6 +1,8 @@
 import Server from 'socket.io';
 import express from 'express';
 import path from 'path';
+import textingServer from 'textingServer';
+import bodyParser from 'body-parser';
 
 export default function startServer(store) {
 	const socketPort = 8006;
@@ -23,10 +25,12 @@ export default function startServer(store) {
 // Express setup ---------------------------------------------------------------
   const server = express();
 
+  server.use(bodyParser.urlencoded({ extended: false }));
+  textingServer(server);
+
   server.get('/', (req, res) => {
     res.redirect('/index.html')
   });
-  console.log(__dirname);
   server.use('/', express.static(path.join(__dirname, '../dashboard-dist/')));
 
   server.listen(expressPort, () => {
